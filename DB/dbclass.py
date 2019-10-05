@@ -16,7 +16,7 @@ class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userid = db.Column(db.String(100))
     name = db.Column(db.String(30))
-    email = db.Column(db.String(30), unique=True)
+    email = db.Column(db.String(30))
     password = db.Column(db.String(100))
     user_role = db.Column(db.String(30))
     date = db.Column(db.DateTime)
@@ -38,6 +38,8 @@ class Vehicles(db.Model):
     vehicle_type = db.Column(db.String(30))
     vehicle_price = db.Column(db.Integer)
     vehicle_tankcapacity = db.Column(db.Integer)
+    vehicle_status = db.Column(db.String(30))
+    vehicle_retired_date = db.Column(db.String(30))
 
     fuel_reg_rel = db.relationship('Fuel_reg', backref='fuel_reg_rel')
     oil_reg_rel = db.relationship('Oil_reg', backref='oil_reg_rel')
@@ -47,11 +49,13 @@ class Vehicles(db.Model):
     total_expense_rel = db.relationship('Total_expense', backref='total_expense_rel')
 
     
-    def __init__(self, vehicle_number=None, vehicle_type=None, vehicle_price=None, vehicle_tankcapacity=None):
+    def __init__(self, vehicle_number=None, vehicle_type=None, vehicle_price=None, vehicle_tankcapacity=None,vehicle_retired_date=None,vehicle_status=None):
         self.vehicle_number = vehicle_number
         self.vehicle_type = vehicle_type
         self.vehicle_price = vehicle_price
         self.vehicle_tankcapacity = vehicle_tankcapacity
+        self.vehicle_retired_date = vehicle_retired_date
+        self.vehicle_status = vehicle_status
 
 class Fuel_reg(db.Model):
     __tablename__ = 'fuel_reg'
@@ -294,5 +298,71 @@ class Total_expense(db.Model):
         self.vehicle_id = vehicle_id
 
 
+from datetime import datetime
+now = datetime.now()
+
 
 #db.create_all()
+
+'''
+#Add user details
+
+#dicvalue = {'userid':'admin','name':'admin','email':None,'password':'admin','user_role':'admin','date' : now}
+#userObj = Users(**dicvalue)
+
+userObj = Users()
+
+userObj.userid = 'admin'
+userObj.name = 'admin'
+userObj.email = None
+userObj.password = 'admin'
+userObj.user_role = 'admin'
+userObj.date = now
+
+db.session.add(userObj)
+db.session.commit()
+
+
+#Add vehicle details
+vehicleObj = Vehicles()
+ 
+vehicleObj.vehicle_number = 'TN68T4444'
+vehicleObj.vehicle_type = 'petrol'
+vehicleObj.vehicle_price = '12000000'
+vehicleObj.vehicle_tankcapacity = '10'
+
+db.session.add(vehicleObj)
+db.session.commit()
+
+
+#Add fuel reg
+
+vehicleData = Vehicles.query.filter_by(vehicle_number = 'TN68T4444').first()
+FuelRegObj = Fuel_reg()
+
+FuelRegObj.date = now
+FuelRegObj.month = 'october'
+FuelRegObj.year = '2019'
+FuelRegObj.voucher_number = '1234'
+FuelRegObj.liters = '5'
+FuelRegObj.driver_name = 'rajesh'
+FuelRegObj.cost = '500'
+FuelRegObj.purchased_from = 'amazon'
+FuelRegObj.bill_filepath = "\\test\\test"
+FuelRegObj.vehicle_id = vehicleData.id
+
+db.session.add(FuelRegObj)
+db.session.commit()
+
+#delete
+Fuel_reg.query.filter_by(id=1).delete()
+db.session.commit()
+'''
+
+#update
+Fuel_reg.query.filter_by(driver_name='rajesh').update({'driver_name':'ra1'})
+db.session.commit()
+
+
+
+
