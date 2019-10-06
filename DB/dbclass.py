@@ -2,15 +2,17 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Table, Column, func, Integer, String, Date, Float, Text
 import pymysql
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 # DB class
 #app.config['SQLALCHEMY_DATABASE_URI'] =  config.DB_URI
 app.config['SQLALCHEMY_DATABASE_URI'] =  'mysql+pymysql://root:mysql@localhost:3306/vehiclemgmt'
 db = SQLAlchemy(app)
- 
+    
 # DB classess
 class Users(db.Model):
+
     __tablename__ = 'users'
  
     id = db.Column(db.Integer, primary_key=True)
@@ -28,6 +30,13 @@ class Users(db.Model):
         self.password = password
         self.user_role = user_role
         self.date = date
+
+    def setPassword(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def checkPassword(self, password):
+        return check_password_hash(self.password_hash, password)
+
 
 # DB classess
 class Vehicles(db.Model):
@@ -295,4 +304,4 @@ class Total_expense(db.Model):
 
 
 
-#db.create_all()
+# db.create_all()
