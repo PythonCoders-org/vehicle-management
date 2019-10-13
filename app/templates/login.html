@@ -21,6 +21,12 @@
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
     </form>
-
+    <p>Register New User: <a href="{{ url_for('register') }}">Click to Register!</a></p>
+    <p>Add New Vehicle: <a href="{{ url_for('VehicleAdd') }}">Click to Add Vehicle!</a></p>
+    <p>Add Fuel Registration: <a href="{{ url_for('FuelRegAdd') }}">Click to Add Fuel Registration!</a></p>
+    <p>Add Oil Registration: <a href="{{ url_for('OilRegAdd') }}">Click to Add Oil Registration!</a></p>
+    <p>Add General Expense Registration: <a href="{{ url_for('GeneralExpenseRegAdd') }}">Click to Add General Expense Registration!</a></p>
+    <p>Add Tyre Registration: <a href="{{ url_for('TyreRegAdd') }}">Click to Add Tyre Registration!</a></p>
+    <p>Add Repair Registration: <a href="{{ url_for('RepairRegAdd') }}">Click to Add Repair Registration!</a></p>
 {% endblock %}
 

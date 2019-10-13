@@ -10,35 +10,6 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] =  'mysql+pymysql://root:mysql@localhost:3306/vehiclemgmt'
 db = SQLAlchemy(app)
     
-# DB classess
-class Users(db.Model):
-
-    __tablename__ = 'users'
- 
-    id = db.Column(db.Integer, primary_key=True)
-    userid = db.Column(db.String(100))
-    name = db.Column(db.String(30))
-    email = db.Column(db.String(30), unique=True)
-    password = db.Column(db.String(100))
-    user_role = db.Column(db.String(30))
-    date = db.Column(db.DateTime)
-    
-    def __init__(self, userid=None, name=None, email=None, password=None, user_role=None, date=None):
-        self.userid = userid
-        self.name = name
-        self.email = email
-        self.password = password
-        self.user_role = user_role
-        self.date = date
-
-    def setPassword(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def checkPassword(self, password):
-        return check_password_hash(self.password_hash, password)
-
-
-# DB classess
 class Vehicles(db.Model):
     __tablename__ = 'vehicles'
  
@@ -105,7 +76,7 @@ class Oil_reg(db.Model):
     grease_oil = db.Column(db.String(30))
     driver_name = db.Column(db.String(100))
     cost = db.Column(db.Float(10, 2))
-    remark = db.Column(Text)
+    remark = db.Column(db.String(1000))
     bill_filepath = db.Column(db.String(300))
     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicles.id'))
 
@@ -137,7 +108,7 @@ class General_expenses_reg(db.Model):
     description_purchase = db.Column(db.String(300))
     driver_name = db.Column(db.String(100))
     cost = db.Column(db.Float(10, 2))
-    remark = db.Column(Text)
+    remark = db.Column(db.String(1000))
     bill_filepath = db.Column(db.String(300))
     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicles.id'))
 
@@ -205,7 +176,7 @@ class Repair_local_reg(db.Model):
     month = db.Column(db.String(30))
     year = db.Column(db.Integer)
     serial_number = db.Column(db.String(100))
-    description = db.Column(Text)
+    description = db.Column(db.String(1000))
     supplier = db.Column(db.String(100))
     cost = db.Column(db.Float(10, 2))
     sancation_number_date_bywhom = db.Column(db.String(200))
@@ -215,7 +186,7 @@ class Repair_local_reg(db.Model):
     driver_name = db.Column(db.String(100))
     passed_amount = db.Column(db.Float(10, 2))
     c_bill_number = db.Column(db.String(200))
-    remark = db.Column(Text)
+    remark = db.Column(db.String(1000))
     bill_filepath = db.Column(db.String(300))
     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicles.id'))
     
@@ -304,4 +275,4 @@ class Total_expense(db.Model):
 
 
 
-# db.create_all()
+db.create_all()

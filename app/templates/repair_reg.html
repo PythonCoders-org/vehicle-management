@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Repair Registration Add</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.vehicle_number.label }}<br>
+            {{ form.vehicle_number(size=32) }}<br>
+            {% for error in form.vehicle_number.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.date.label }}<br>
+            {{ form.date(size=32) }}<br>
+            {% for error in form.date.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.serial_number.label }}<br>
+            {{ form.serial_number(size=64) }}<br>
+            {% for error in form.serial_number.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description(size=64) }}<br>
+            {% for error in form.description.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.supplier.label }}<br>
+            {{ form.supplier(size=64) }}<br>
+            {% for error in form.supplier.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.sancation_number_date_bywhom.label }}<br>
+            {{ form.sancation_number_date_bywhom(size=64) }}<br>
+            {% for error in form.sancation_number_date_bywhom.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.date_of_supply.label }}<br>
+            {{ form.date_of_supply(size=64) }}<br>
+            {% for error in form.date_of_supply.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.date_of_bill.label }}<br>
+            {{ form.date_of_bill(size=64) }}<br>
+            {% for error in form.date_of_bill.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.fitted_place.label }}<br>
+            {{ form.fitted_place(size=64) }}<br>
+            {% for error in form.fitted_place.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.driver_name.label }}<br>
+            {{ form.driver_name(size=64) }}<br>
+            {% for error in form.driver_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.passed_amount.label }}<br>
+            {{ form.passed_amount(size=64) }}<br>
+            {% for error in form.passed_amount.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.cost.label }}<br>
+            {{ form.cost(size=64) }}<br>
+            {% for error in form.cost.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.c_bill_number.label }}<br>
+            {{ form.c_bill_number(size=64) }}<br>
+            {% for error in form.c_bill_number.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.remark.label }}<br>
+            {{ form.remark(size=64) }}<br>
+            {% for error in form.remark.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.bill_filepath.label }}<br>
+            {{ form.bill_filepath(size=64) }}<br>
+            {% for error in form.bill_filepath.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Vehicle Add</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.vehicle_number.label }}<br>
+            {{ form.vehicle_number(size=32) }}<br>
+            {% for error in form.vehicle_number.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.vehicle_type.label }}<br>
+            {{ form.vehicle_type }}<br>
+            {% for error in form.vehicle_type.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.vehicle_price.label }}<br>
+            {{ form.vehicle_price(size=64) }}<br>
+            {% for error in form.vehicle_price.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.vehicle_tankcapacity.label }}<br>
+            {{ form.vehicle_tankcapacity(size=64) }}<br>
+            {% for error in form.vehicle_tankcapacity.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

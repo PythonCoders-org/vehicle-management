@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Fuel Registration Add</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.vehicle_number.label }}<br>
+            {{ form.vehicle_number(size=32) }}<br>
+            {% for error in form.vehicle_number.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.date.label }}<br>
+            {{ form.date(size=32) }}<br>
+            {% for error in form.date.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.voucher_number.label }}<br>
+            {{ form.voucher_number(size=64) }}<br>
+            {% for error in form.voucher_number.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.liters.label }}<br>
+            {{ form.liters(size=64) }}<br>
+            {% for error in form.liters.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.driver_name.label }}<br>
+            {{ form.driver_name(size=64) }}<br>
+            {% for error in form.driver_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.cost.label }}<br>
+            {{ form.cost(size=64) }}<br>
+            {% for error in form.cost.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.purchased_from.label }}<br>
+            {{ form.purchased_from(size=64) }}<br>
+            {% for error in form.purchased_from.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.bill_filepath.label }}<br>
+            {{ form.bill_filepath(size=64) }}<br>
+            {% for error in form.bill_filepath.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
